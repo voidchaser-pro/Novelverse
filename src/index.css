@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    @apply bg-slate-50 text-slate-900;
+    @apply dark:bg-slate-950 dark:text-slate-100;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Safe area insets for Android notch / status bar */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    overflow-x: hidden;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent text overflow on mobile */
+  h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-300 dark:bg-primary-700;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-400 dark:bg-primary-600;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/85 dark:bg-slate-900/85;
+    @apply backdrop-blur-xl;
+    @apply border border-slate-200/60 dark:border-slate-800/60;
+    @apply rounded-2xl;
+  }
+
+  .glass-panel {
+    @apply bg-white/70 dark:bg-slate-900/50;
+    @apply backdrop-blur-2xl;
+    @apply border border-slate-200/50 dark:border-slate-800/50;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-5 py-2.5 rounded-xl;
+    @apply bg-gradient-to-r from-primary-700 to-secondary-700;
+    @apply text-white font-semibold;
+    @apply shadow-lg shadow-primary-500/30;
+    @apply transition-all duration-200;
+    @apply hover:shadow-xl hover:shadow-primary-500/40 hover:scale-[1.02];
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950;
+    @apply active:scale-[0.98];
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-4 py-2.5 rounded-xl;
+    @apply text-slate-600 dark:text-slate-300;
+    @apply font-medium;
+    @apply transition-all duration-200;
+    @apply hover:bg-slate-100 dark:hover:bg-slate-800;
+    @apply active:scale-[0.98];
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-5 py-2.5 rounded-xl;
+    @apply border-2 border-primary-300 dark:border-primary-700;
+    @apply text-primary-700 dark:text-primary-300;
+    @apply font-semibold;
+    @apply transition-all duration-200;
+    @apply hover:bg-primary-50 dark:hover:bg-primary-950/50;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950;
+    @apply active:scale-[0.98];
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl;
+    @apply bg-white dark:bg-slate-900;
+    @apply border border-slate-200 dark:border-slate-800;
+    @apply text-slate-900 dark:text-slate-100;
+    @apply placeholder:text-slate-500 dark:placeholder:text-slate-400;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-accent-500/60 focus:border-primary-500;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl;
+    @apply text-slate-500 dark:text-slate-400;
+    @apply font-medium;
+    @apply transition-all duration-200;
+    @apply hover:bg-slate-100 dark:hover:bg-slate-800/50;
+  }
+
+  .nav-link-active {
+    @apply bg-gradient-to-r from-primary-500/15 to-accent-500/10;
+    @apply text-primary-700 dark:text-primary-300;
+    @apply hover:bg-gradient-to-r hover:from-primary-500/20 hover:to-accent-500/15;
+    @apply shadow-inner shadow-primary-500/10;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full;
+    @apply text-xs font-semibold;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+    @apply hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500;
+    @apply bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply relative;
+    @apply before:absolute before:inset-0 before:rounded-2xl;
+    @apply before:bg-gradient-to-r before:from-primary-500 before:to-secondary-500;
+    @apply before:opacity-20 before:transition-opacity before:duration-300;
+    @apply hover:before:opacity-40;
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(16, 185, 129, 0.08) 50%,
+      transparent 100%
+    );
+    background-size: 1000px 100%;
+    @apply animate-shimmer;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Page transition: keyed by page id so each navigation re-triggers the animation */
+  .page-enter {
+    animation: pageEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes pageEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Smooth horizontal scroll snap for tabs on mobile */
+  .tab-scroll {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .tab-scroll > * {
+    scroll-snap-align: start;
+  }
+
+  /* Safe area padding for fixed elements */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
